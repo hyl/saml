@@ -254,7 +254,7 @@ type Issuer struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *Issuer) Element() *etree.Element {
-	el := etree.NewElement("saml:Issuer")
+	el := etree.NewElement("Issuer")
 	if a.NameQualifier != "" {
 		el.CreateAttr("NameQualifier", a.NameQualifier)
 	}
@@ -562,7 +562,7 @@ type Assertion struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *Assertion) Element() *etree.Element {
-	el := etree.NewElement("saml:Assertion")
+	el := etree.NewElement("Assertion")
 	el.CreateAttr("xmlns:saml", "urn:oasis:names:tc:SAML:2.0:assertion")
 	el.CreateAttr("Version", "2.0")
 	el.CreateAttr("ID", a.ID)
@@ -619,7 +619,7 @@ type Subject struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *Subject) Element() *etree.Element {
-	el := etree.NewElement("saml:Subject")
+	el := etree.NewElement("Subject")
 	if a.NameID != nil {
 		el.AddChild(a.NameID.Element())
 	}
@@ -642,7 +642,7 @@ type NameID struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *NameID) Element() *etree.Element {
-	el := etree.NewElement("saml:NameID")
+	el := etree.NewElement("NameID")
 	if a.NameQualifier != "" {
 		el.CreateAttr("NameQualifier", a.NameQualifier)
 	}
@@ -691,7 +691,7 @@ type SubjectConfirmation struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *SubjectConfirmation) Element() *etree.Element {
-	el := etree.NewElement("saml:SubjectConfirmation")
+	el := etree.NewElement("SubjectConfirmation")
 	el.CreateAttr("Method", a.Method)
 	if a.NameID != nil {
 		el.AddChild(a.NameID.Element())
@@ -715,7 +715,7 @@ type SubjectConfirmationData struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (s *SubjectConfirmationData) Element() *etree.Element {
-	el := etree.NewElement("saml:SubjectConfirmationData")
+	el := etree.NewElement("SubjectConfirmationData")
 	if !s.NotBefore.IsZero() {
 		el.CreateAttr("NotBefore", s.NotBefore.Format(timeFormat))
 	}
@@ -776,7 +776,7 @@ type Conditions struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (c *Conditions) Element() *etree.Element {
-	el := etree.NewElement("saml:Conditions")
+	el := etree.NewElement("Conditions")
 	if !c.NotBefore.IsZero() {
 		el.CreateAttr("NotBefore", c.NotBefore.Format(timeFormat))
 	}
@@ -837,7 +837,7 @@ type AudienceRestriction struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *AudienceRestriction) Element() *etree.Element {
-	el := etree.NewElement("saml:AudienceRestriction")
+	el := etree.NewElement("AudienceRestriction")
 	el.AddChild(a.Audience.Element())
 	return el
 }
@@ -851,7 +851,7 @@ type Audience struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *Audience) Element() *etree.Element {
-	el := etree.NewElement("saml:Audience")
+	el := etree.NewElement("Audience")
 	el.SetText(a.Value)
 	return el
 }
@@ -863,7 +863,7 @@ type OneTimeUse struct{}
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *OneTimeUse) Element() *etree.Element {
-	return etree.NewElement("saml:OneTimeUse")
+	return etree.NewElement("OneTimeUse")
 }
 
 // ProxyRestriction represents the SAML element ProxyRestriction.
@@ -876,7 +876,7 @@ type ProxyRestriction struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *ProxyRestriction) Element() *etree.Element {
-	el := etree.NewElement("saml:ProxyRestriction")
+	el := etree.NewElement("ProxyRestriction")
 	if a.Count != nil {
 		el.CreateAttr("Count", strconv.Itoa(*a.Count))
 	}
@@ -899,7 +899,7 @@ type AuthnStatement struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *AuthnStatement) Element() *etree.Element {
-	el := etree.NewElement("saml:AuthnStatement")
+	el := etree.NewElement("AuthnStatement")
 	el.CreateAttr("AuthnInstant", a.AuthnInstant.Format(timeFormat))
 	if a.SessionIndex != "" {
 		el.CreateAttr("SessionIndex", a.SessionIndex)
@@ -957,7 +957,7 @@ type SubjectLocality struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *SubjectLocality) Element() *etree.Element {
-	el := etree.NewElement("saml:SubjectLocality")
+	el := etree.NewElement("SubjectLocality")
 	if a.Address != "" {
 		el.CreateAttr("Address", a.Address)
 	}
@@ -979,7 +979,7 @@ type AuthnContext struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *AuthnContext) Element() *etree.Element {
-	el := etree.NewElement("saml:AuthnContext")
+	el := etree.NewElement("AuthnContext")
 	if a.AuthnContextClassRef != nil {
 		el.AddChild(a.AuthnContextClassRef.Element())
 	}
@@ -995,7 +995,7 @@ type AuthnContextClassRef struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *AuthnContextClassRef) Element() *etree.Element {
-	el := etree.NewElement("saml:AuthnContextClassRef")
+	el := etree.NewElement("AuthnContextClassRef")
 	el.SetText(a.Value)
 	return el
 }
@@ -1009,7 +1009,7 @@ type AttributeStatement struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *AttributeStatement) Element() *etree.Element {
-	el := etree.NewElement("saml:AttributeStatement")
+	el := etree.NewElement("AttributeStatement")
 	for _, v := range a.Attributes {
 		el.AddChild(v.Element())
 	}
@@ -1028,7 +1028,7 @@ type Attribute struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *Attribute) Element() *etree.Element {
-	el := etree.NewElement("saml:Attribute")
+	el := etree.NewElement("Attribute")
 	if a.FriendlyName != "" {
 		el.CreateAttr("FriendlyName", a.FriendlyName)
 	}
@@ -1055,7 +1055,7 @@ type AttributeValue struct {
 
 // Element returns an etree.Element representing the object in XML form.
 func (a *AttributeValue) Element() *etree.Element {
-	el := etree.NewElement("saml:AttributeValue")
+	el := etree.NewElement("AttributeValue")
 	el.CreateAttr("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
 	el.CreateAttr("xmlns:xs", "http://www.w3.org/2001/XMLSchema")
 	el.CreateAttr("xsi:type", a.Type)
